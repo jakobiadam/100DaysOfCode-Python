@@ -3,31 +3,31 @@ import numpy as np
 import time
 import random
 
-class ScoreBoard:
+class ScoreBoard(turtle.Turtle):
 
     def __init__(self):
-        self.cursor = turtle.Turtle()
-        self.cursor.penup()
-        self.cursor.color("white")
-        self.cursor.hideturtle()
-        self.cursor.setpos(-50, 270)
-        self.cursor.pendown()
+        super().__init__()
+        self.penup()
+        self.color("white")
+        self.hideturtle()
+        self.setpos(-50, 270)
+        self.pendown()
         self.score = 0
 
     def writeScore(self):
-        self.cursor.write(f"Score : {self.score}", font = ('Arial', 20, 'normal'))
+        self.write(f"Score : {self.score}", font = ('Arial', 20, 'normal'))
 
     def gameOver(self):
-        self.cursor.penup()
-        self.cursor.setpos(-60, 240)
-        self.cursor.pendown()
-        self.cursor.write(f"Game Over!\n  Score : {self.score}", font=('Arial', 20, 'normal'))
+        self.penup()
+        self.setpos(-60, 240)
+        self.pendown()
+        self.write(f"Game Over!\n  Score : {self.score}", font=('Arial', 20, 'normal'))
 
     def incrementScore(self):
         self.score += 1
 
     def clearScore(self):
-        self.cursor.clear()
+        self.clear()
 
 class Snake:
     startingPositions = [(0, 0), (-20, 0), (-40, 0)]
@@ -103,24 +103,24 @@ class Snake:
             return False
 
     def foodCollision(self, food):
-        if (self.snake[0]).pos() == food.food.pos():
+        if (self.snake[0]).pos() == food.pos():
             return True
         else:
             return False
 
-class Food:
+class Food(turtle.Turtle):
 
     xPos = np.linspace(-300, 300, 31)
     yPos = np.linspace(-300, 300, 31)
 
     def __init__(self):
-        self.food = turtle.Turtle(shape = "circle")
-        self.food.penup()
-        self.food.color("white")
+        super().__init__(shape = "circle")
+        self.penup()
+        self.color("white")
         self.changePosition()
 
     def changePosition(self):
-        (self.food).setpos(random.choice(self.xPos), random.choice(self.yPos))
+        self.setpos(random.choice(self.xPos), random.choice(self.yPos))
 
 
 def main():
