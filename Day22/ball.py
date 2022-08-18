@@ -9,7 +9,7 @@ class Ball(turtle.Turtle):
     decreaseAngle = 1.5
 
     def __init__(self, size, xmin, xmax, ymin, ymax):
-        super().__init__(shape="square")
+        super().__init__(shape="circle")
         self.shapesize(stretch_wid=(size / Ball.stampSize), stretch_len=(size / Ball.stampSize))
         self.penup()
         self.color("white")
@@ -28,13 +28,13 @@ class Ball(turtle.Turtle):
         self.setheading((random.randint(-30, 30) + random.choice([0, 180])) % 360)
 
     def collisionSide(self):
-        _, y = self.pos()
+        y = self.ycor()
         if (y <= self.ymin) or (y >= self.ymax):
             return True
         return False
 
     def collisionBorder(self):
-        x, _ = self.pos()
+        x = self.xcor()
         if (x <= self.xmin) or (x >= self.xmax):
             return True
         return False
