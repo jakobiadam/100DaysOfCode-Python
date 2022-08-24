@@ -113,6 +113,7 @@ def gameLoop():
         scoreBoard.writeNewLevel()
         player.goto(PLAYER_STARTING_POS)
         DELAY_IN_MS = int(0.75 * DELAY_IN_MS)
+        time.sleep(1)
     
     screen.update()
     cnt += 1
